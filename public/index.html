@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job & Application Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">CAREER ADMIN</p><h1>Job & Application Manager</h1></div>
+    <span class="status"><i></i> Connected app</span>
+  </header>
+  <main class="container">
+    <section class="stats">
+      <article class="stat"><span>Open jobs</span><strong id="jobCount">0</strong></article>
+      <article class="stat"><span>Applications</span><strong id="applicationCount">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">JOB MANAGEMENT</p><h2 id="jobFormHeading">Add a job</h2></div></div>
+      <form id="jobForm" class="form-grid">
+        <input type="hidden" id="jobId" />
+        <label>Job title<input id="title" required placeholder="e.g. Junior Developer" /></label>
+        <label>Company name<input id="companyName" required placeholder="e.g. ABC Technologies" /></label>
+        <label>Location<input id="location" required placeholder="e.g. Hyderabad / Remote" /></label>
+        <label>Employment type<select id="employmentType"><option>Full-time</option><option>Part-time</option><option>Internship</option><option>Contract</option></select></label>
+        <label>Salary<input id="salary" placeholder="e.g. ₹3–5 LPA" /></label>
+        <label>Skills (comma separated)<input id="skills" placeholder="JavaScript, Node.js, MongoDB" /></label>
+        <label class="wide">Description<textarea id="description" required rows="3" placeholder="Describe the role and responsibilities"></textarea></label>
+        <div class="actions wide"><button type="submit" id="jobSubmit">Save job</button><button type="button" class="secondary" id="cancelEdit" hidden>Cancel edit</button></div>
+      </form>
+      <p id="jobMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">AVAILABLE POSITIONS</p><h2>Jobs</h2></div><button class="secondary" id="refreshJobs">Refresh</button></div>
+      <div id="jobsList" class="cards"><p class="muted">Loading jobs…</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">CANDIDATE TRACKING</p><h2>Submit an application</h2></div></div>
+      <form id="applicationForm" class="form-grid">
+        <label class="wide">Select job<select id="applicationJob" required><option value="">Choose a job</option></select></label>
+        <label>Applicant name<input id="applicantName" required placeholder="Full name" /></label>
+        <label>Email<input id="email" type="email" required placeholder="name@example.com" /></label>
+        <label>Phone<input id="phone" placeholder="Mobile number" /></label>
+        <label>Resume URL<input id="resumeUrl" type="url" placeholder="https://…" /></label>
+        <label class="wide">Cover letter<textarea id="coverLetter" rows="2" placeholder="Short introduction (optional)"></textarea></label>
+        <div class="actions wide"><button type="submit">Submit application</button></div>
+      </form>
+      <p id="applicationMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">APPLICATION PIPELINE</p><h2>Applications</h2></div><button class="secondary" id="refreshApplications">Refresh</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Applicant</th><th>Job</th><th>Email</th><th>Status</th><th>Actions</th></tr></thead><tbody id="applicationsList"><tr><td colspan="5">Loading applications…</td></tr></tbody></table></div>
+    </section>
+    <p class="footer">Learning project · Node.js · Express · MongoDB Atlas</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
